@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use 'tailwindcss';
+
+@import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bitcount-title {
+  font-family: "Bitcount", system-ui !important;
+  font-optical-sizing: auto !important;
+  font-size: 80px !important;
+  font-weight: 2 !important;
+  font-style: normal !important;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+}
+
+// Tema claro
+.light-theme {
+  @include mat.theme((
+    color: (
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: light,
+      ),
+      typography: (
+        brand-family: 'Roboto',
+        ),
+        density: 0,
+        ));
+        background-color: white;
+        color: black;
+      }
+      
+      // Tema oscuro
+      .dark-theme {
+        @include mat.theme((
+          color: (
+            primary: mat.$cyan-palette,
+            tertiary: mat.$orange-palette,
+            theme-type: dark,
+            ),
+            typography: (
+              brand-family: 'Roboto',
+              ),
+              density: 0,
+              ));
+              background-color: black;
+              color: white;
+            }
+            
+            // Estilos globales
+            html, body {
+              height: 100%;
+              margin: 0;
+              font-family: Roboto, "Helvetica Neue", sans-serif;
+              transition: background-color 0.3s ease, color 0.3s ease;
+              color-scheme: light dark;
+            }
+            
