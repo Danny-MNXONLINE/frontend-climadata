@@ -1,19 +1,49 @@
 import { Component } from '@angular/core';
-import { MatButton, MatFabButton } from '@angular/material/button';
+import { MatFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFabButton, MatIcon, MatInputModule, MatLabel, MatButton],
+  imports: [MatFabButton, MatIcon, MatInputModule, MatLabel, HttpClientModule, FormsModule],
+  standalone: true,
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
 export class Login {
+  email: string = '';
+  password: string = '';
+
+  constructor(private http: HttpClient) { }
+
   login() {
-    const email = (document.querySelector('input[name="email"]') as HTMLInputElement).value;
-    const password = (document.querySelector('input[name="password"]') as HTMLInputElement).value;
-    console.log(`Email: ${email}, Password: ${password}`);
+    const credentials = {
+      email: this.email,
+      password: this.password
+    };
+
+    interface LoginResponse {
+      access_token: string;
+      [key: string]: any;
+    }
+
+    this.http.post<LoginResponse>('http://localhost:3000/auth/login', credentials)
+      .subscribe({
+        next: (res) => {
+          console.log('Login exitoso:', res);
+          alert('Login exitoso');
+          const token = res.access_token; 
+          sessionStorage.setItem('token', token);
+        },
+        error: (err) => {
+          console.error('Login fallido:', err);
+          
+        }
+      })
+      console.log("peticion lanzada");
   }
 }

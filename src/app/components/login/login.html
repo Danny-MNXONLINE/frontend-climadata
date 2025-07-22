@@ -6,21 +6,21 @@
                 <h1 class="bitcount-title">Climadata</h1>
                 <p>monitorea, entiende, respira mejor.</p>
             </div>
-            <div class="flex flex-col p-12 w-96">
+            <form (ngSubmit)="login()" class="flex flex-col p-12 w-96">
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput type="email" name="email">
+                    <input matInput type="email" [(ngModel)]="email" name="email">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" name="password">
+                    <input matInput type="password" [(ngModel)]="password" name="password">
                 </mat-form-field>
-                <button matFab color="primary" (click)="login()" extended filled>
+                <button matFab color="primary" type="submit" extended filled>
                     <mat-icon>login</mat-icon>
                     Iniciar sesión
                 </button>
                 <a class="text-center" href="/login">¿Te olvidaste la contraseña?</a>
-            </div>
+            </form>
         </div>
         <div class="flex justify-center-safe">
             <button matFab extended filled color="red" class="mr-5">
