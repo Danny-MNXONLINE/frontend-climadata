@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { ToggleButton } from './components/toggle-button/toggle-button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToggleButton, HttpClientModule, FormsModule],
+  imports: [RouterOutlet, ToggleButton, HttpClientModule, FormsModule, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

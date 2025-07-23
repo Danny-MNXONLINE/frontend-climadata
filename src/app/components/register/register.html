@@ -1,0 +1,42 @@
+<div class="h-screen flex flex-col justify-center items-center" color="primary">
+  <app-back-button routerLink="/landing"></app-back-button>
+  <h1 class="text-4xl">Crear cuenta en el panel de control de calidad del aire</h1>
+  <h1 class="mt-3 bitcount-title">Climadata</h1>
+  <form (ngSubmit)="register()" class="flex flex-col p-12 w-96">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput type="text" [(ngModel)]="firstName" name="firstName" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput type="text" [(ngModel)]="lastName" name="lastName" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Repite la contraseña</mat-label>
+      <input matInput type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    </mat-form-field>
+
+    <!-- Mostrar mensaje si las contraseñas no coinciden -->
+    <p *ngIf="password !== confirmPassword && confirmPassword" class="text-red-500 text-sm mb-2">
+      Las contraseñas no coinciden.
+    </p>
+
+    <button matFab color="primary" type="submit" extended filled [disabled]="password !== confirmPassword">
+      <mat-icon>person_add</mat-icon>
+      Crear cuenta
+    </button>
+    <a class="text-center mt-4" href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
+  </form>
+</div>

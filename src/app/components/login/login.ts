@@ -6,10 +6,11 @@ import { MatLabel } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BackButton } from '../back-button/back-button';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFabButton, MatIcon, MatInputModule, MatLabel, HttpClientModule, FormsModule],
+  imports: [MatFabButton, MatIcon, MatInputModule, MatLabel, HttpClientModule, FormsModule, BackButton],
   standalone: true,
   templateUrl: './login.html',
   styleUrl: './login.scss'
