@@ -1,0 +1,8 @@
+<div class="mx-4 flex items-center justify-between" color="primary">
+    <h1 class="bitcount-title">Climadata</h1>
+    <div>
+        <button matFab extended filled><mat-icon>person</mat-icon>{{userName.email}}</button>
+        <button class="ms-3" matFab extended filled (click)="logout()" color="secondary"><mat-icon>logout</mat-icon>logout</button>
+    </div>
+</div>
+<router-outlet></router-outlet>

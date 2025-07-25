@@ -36,9 +36,10 @@ export class Login {
       .subscribe({
         next: (res) => {
           console.log('Login exitoso:', res);
-          alert('Login exitoso');
+          //alert('Login exitoso');
           const token = res.access_token; 
           sessionStorage.setItem('token', token);
+          window.location.href = '/dashboard';
         },
         error: (err) => {
           console.error('Login fallido:', err);

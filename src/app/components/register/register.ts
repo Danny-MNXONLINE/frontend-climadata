@@ -25,6 +25,7 @@ import { BackButton } from '../back-button/back-button';
   styleUrl: './register.scss'
 })
 export class Register {
+  constructor(private http: HttpClient) { }
   firstName = '';
   lastName = '';
   email = '';
@@ -33,18 +34,26 @@ export class Register {
 
   register() {
     if (this.password !== this.confirmPassword) {
-      console.warn('Las contraseñas no coinciden');
+      alert('Las contraseñas no coinciden');
       return;
     }
 
     const user = {
-      firstName: this.firstName,
-      lastName: this.lastName,
       email: this.email,
       password: this.password
     };
 
     console.log('Registrando usuario:', user);
-    // Aquí puedes hacer el POST a tu backend NestJS
+    this.http.post('http://localhost:3000/auth/register', user)
+      .subscribe({
+        next: (res) => {
+          console.log('Registro exitoso:', res);
+          window.location.href = '/dashboard'; // Redirigir al dashboard
+        },
+        error: (err) => {
+          console.error('Error al registrar:', err);
+          alert('Error al registrar. Inténtalo de nuevo.');
+        }
+      });
   }
 }

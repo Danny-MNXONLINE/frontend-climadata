@@ -1,0 +1,41 @@
+.aside {
+  width: 250px;
+  height: 100vh;
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+
+.aside.hidden {
+  transform: translateX(-100%);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+
+main {
+  margin-left: 250px;
+  padding: 1rem;
+  transition: margin-left 0.3s ease;
+}
+
+main.expanded {
+  margin-left: 0;
+}
+
+.open-btn {
+  position: fixed;
+  top: 850px;
+  left: 15px;
+  z-index: 1100;
+}

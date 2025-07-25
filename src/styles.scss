@@ -35,6 +35,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         ));
         background-color: white;
         color: black;
+        .fondo_leyenda {
+          background-color: lightgray;
+        }
       }
       
       // Tema oscuro
@@ -52,6 +55,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
               ));
               background-color: black;
               color: white;
+              .fondo_leyenda {
+                background-color: #333;
+              }
             }
             
             // Estilos globales

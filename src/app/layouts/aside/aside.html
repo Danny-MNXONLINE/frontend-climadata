@@ -1,0 +1,27 @@
+<aside class="aside" [class.hidden]="!showAside">
+  <nav>
+    <ul>
+      <li><a style="display: flex; align-items: center;" routerLink="/dashboard"><mat-icon>dashboard</mat-icon> Dashboard</a></li>
+      <li><a style="display: flex; align-items: center;" routerLink="/panel"><mat-icon>air</mat-icon>Panel AQ</a></li>
+      <li>
+        <p routerLink="/history" class="text-gray-400 " style="display: flex; align-items: center;">
+          <mat-icon style="margin-right: 8px;">history</mat-icon>
+          Historial
+        </p>
+      </li>
+    </ul>
+  </nav>
+
+  <button mat-icon-button aria-label="Cerrar sidebar" (click)="toggleAside()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</aside>
+
+<!-- Contenido principal -->
+<main [class.expanded]="!showAside">
+    <button mat-fab aria-label="Abrir sidebar" *ngIf="!showAside" (click)="toggleAside()" class="open-btn">
+        <mat-icon>menu</mat-icon>
+    </button>
+    
+    <router-outlet></router-outlet>
+</main>
