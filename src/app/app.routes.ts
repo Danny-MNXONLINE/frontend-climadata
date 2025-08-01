@@ -26,11 +26,11 @@ export const routes: Routes = [
             },
             {
                 path: '',
-                component: AuthHeader,
+                component: Aside,
                 children: [
                     {
                         path: '',
-                        component: Aside,
+                        component: AuthHeader,
                         canActivate: [AuthGuard],
                         children: [
                             {

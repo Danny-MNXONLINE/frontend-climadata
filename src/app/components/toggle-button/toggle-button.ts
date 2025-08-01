@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/toggle-theme';
 import { MatIcon } from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-toggle-button',
-  imports: [MatIcon],
+  imports: [MatIcon, MatSlideToggleModule],
   templateUrl: './toggle-button.html',
   styleUrl: './toggle-button.scss'
 })

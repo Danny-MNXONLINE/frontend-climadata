@@ -1,4 +1,4 @@
-<div class="flex flex-row justify-between items-center p-4">
+<div class="h-screen flex flex-row justify-between p-4">
     <div>
         <h1>Panel de Calidad del Aire</h1>
         @if (elemts.length === 0){
@@ -21,7 +21,8 @@
             </mat-form-field>
         </div>
         }
-        <div *ngIf="selectedId !== null" class="p-4 rounded-lg fondo_leyenda shadow-sm">
+        @if (selectedId !== null) {
+        <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
             <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
             <div class="flex  flex-row">
                 @for (param of parameters; track param.id) {
@@ -38,6 +39,7 @@
                 }
             </div>
         </div>
+        }
     </div>
     <div>
         <div class="p-4 rounded-lg fondo_leyenda shadow-sm">

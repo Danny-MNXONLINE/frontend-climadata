@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './aside.scss'
 })
 export class Aside {
-  showAside = true;
+  showAside = false;
 
   toggleAside() {
     this.showAside = !this.showAside;

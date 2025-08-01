@@ -4,8 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .bitcount-title {
   font-family: "Bitcount", system-ui !important;
@@ -22,50 +29,62 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Tema claro
 .light-theme {
-  @include mat.theme((
-    color: (
-      primary: mat.$cyan-palette,
-      tertiary: mat.$orange-palette,
-      theme-type: light,
+  @include mat.theme((color: (primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: light,
       ),
-      typography: (
-        brand-family: 'Roboto',
-        ),
-        density: 0,
-        ));
-        background-color: white;
-        color: black;
-        .fondo_leyenda {
-          background-color: lightgray;
-        }
-      }
-      
-      // Tema oscuro
-      .dark-theme {
-        @include mat.theme((
-          color: (
-            primary: mat.$cyan-palette,
-            tertiary: mat.$orange-palette,
-            theme-type: dark,
-            ),
-            typography: (
-              brand-family: 'Roboto',
-              ),
-              density: 0,
-              ));
-              background-color: black;
-              color: white;
-              .fondo_leyenda {
-                background-color: #333;
-              }
-            }
-            
-            // Estilos globales
-            html, body {
-              height: 100%;
-              margin: 0;
-              font-family: Roboto, "Helvetica Neue", sans-serif;
-              transition: background-color 0.3s ease, color 0.3s ease;
-              color-scheme: light dark;
-            }
-            
+      typography: (brand-family: 'Roboto',
+      ),
+      density: 0,
+    ));
+  background-color: white;
+  color: black;
+
+  .fondo_leyenda {
+    background-color: lightgray;
+  }
+
+    .section {
+    background-color: rgb(199, 200, 201)
+  }
+
+  .dashboard-cards-theme{
+    background-color: #cfd7e1;
+  }
+}
+
+// Tema oscuro
+.dark-theme {
+  @include mat.theme((color: (primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: dark,
+      ),
+      typography: (brand-family: 'Roboto',
+      ),
+      density: 0,
+    ));
+  background-color: black;
+  color: white;
+
+  .fondo_leyenda {
+    background-color: #333;
+  }
+
+  .section {
+    background-color: rgb(20, 21, 24)
+  }
+
+  .dashboard-cards-theme{
+    background-color: #334155;
+  }
+}
+
+// Estilos globales
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color-scheme: light dark;
+}
