@@ -1,10 +1,10 @@
-<div class="h-screen flex flex-row justify-between p-4">
+<div class="h-screen flex flex-col xl:flex-row justify-between p-4">
   <div>
     <h1>Panel de Calidad del Aire</h1>
 
     @defer {
-    <div class="flex items-center">
-      <mat-form-field class="w-96">
+    <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
+      <mat-form-field class="sm:w-96">
         <mat-label>Selecciona una ubicación</mat-label>
         <mat-select [(ngModel)]="selectedId" (selectionChange)="onSelectId($event.value)">
           <mat-option [value]="null">Ninguno</mat-option>
@@ -14,7 +14,7 @@
           <mat-label>Favorite food</mat-label>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="ml-5 w-96">
+      <mat-form-field class="sm:ml-5 sm:w-96">
         <mat-label>Buscar lugar</mat-label>
         <input type="text" matInput placeholder="Buscar" [matAutocomplete]="auto" [(ngModel)]="inputValue"
           (input)="filter()" />
@@ -44,8 +44,13 @@
 
 
     <div class="p-4 rounded-lg fondo_leyenda shadow-sm mt-4">
-      @defer {
-      <div class="flex flex-row gap-8">
+      @if(selectedId !== null){
+      <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
+      @if(parameters().length < 1){
+        <p class="h-32">selecciona una localidad para empezar</p>
+       } 
+      
+      } @defer (when selectedId !==null) { <div class="flex flex-row gap-8">
         @for (param of parameters(); track param.id) {
         <div>
           @for (sensor of param.sensors; track sensor.id) {
@@ -58,29 +63,25 @@
           }
         </div>
         }
-      </div>
-      }
-      @loading (minimum 500ms) {
-      <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
-      }
-      @placeholder {
-
-      <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
-      }
     </div>
+    }
+    @loading (minimum 500ms) {
+    <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
+    }
   </div>
+</div>
 
-  <div>
-    <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
-      <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
-      <ul class="space-y-1 text-sm">
-        <li><strong>O₃</strong>: Ozono (µg/m³)</li>
-        <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
-        <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
-        <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
-        <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
-        <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
-      </ul>
-    </div>
+<div>
+  <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
+    <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
+    <ul class="space-y-1 text-sm">
+      <li><strong>O₃</strong>: Ozono (µg/m³)</li>
+      <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
+      <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
+      <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
+      <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
+      <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
+    </ul>
   </div>
+</div>
 </div>
