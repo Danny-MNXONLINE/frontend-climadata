@@ -1,12 +1,14 @@
 <div class="mx-4 flex items-center justify-between" color="primary">
-    <h1 class="bitcount-title">Climadata</h1>
+    <h1 class="bitcount-title text-5xl sm:text-7xl">Climadata</h1>
     <div class="hidden lg:block">
-        <app-toggle-button></app-toggle-button>
-        <button matFab extended filled><mat-icon>person</mat-icon>{{userName.email}}</button>
-        <button class="ms-3" matFab extended filled (click)="logout()"
-            color="secondary"><mat-icon>logout</mat-icon>logout</button>
+        <div class="flex flex-row">
+            <app-toggle-button></app-toggle-button>
+            <button matFab extended filled><mat-icon>person</mat-icon>{{userName.email}}</button>
+            <button class="ms-3" matFab extended filled (click)="logout()"
+                color="secondary"><mat-icon>logout</mat-icon>logout</button>
+        </div>
     </div>
-    <div class="block lg:hidden border">
+    <div class="sm:block lg:hidden hidden">
         <button color="primary" filled matButton [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item><mat-icon>person</mat-icon>{{userName.email}}</button>

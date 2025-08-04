@@ -1,10 +1,10 @@
 <div class="h-screen flex flex-col justify-center items-center" color="primary">
     <app-back-button routerLink="/landing"></app-back-button>
-    <h1 class="text-4xl">Bienvenido al panel de control de calidad del aire</h1>
+    <h1 class="text-lg text-center sm:text-4xl">Bienvenido al panel de control de calidad del aire</h1>
     <div>
-        <div class="flex flex-row items-center">
+        <div class="mx-5 flex flex-col sm:flex-row items-center">
             <div class="flex flex-col text-center">
-                <h1 class="bitcount-title">Climadata</h1>
+                <h1 class="bitcount-title text-5xl sm:text-7xl">Climadata</h1>
                 <p>monitorea, entiende, respira mejor.</p>
             </div>
             <form (ngSubmit)="login()" class="flex flex-col p-12 w-96">

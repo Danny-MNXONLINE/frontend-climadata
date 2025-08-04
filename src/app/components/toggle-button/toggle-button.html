@@ -1,3 +1,11 @@
-<mat-slide-toggle class="m-4" (click)="toggleTheme()" aria-label="Cambiar tema">
-  <mat-icon>{{ isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
-</mat-slide-toggle>
+<!-- mobile -->
+<div class="block sm:hidden">
+  <mat-slide-toggle class="m-4" (click)="toggleTheme()" aria-label="Cambiar tema">
+  </mat-slide-toggle>
+</div>
+<!-- desktop -->
+<div class="hidden sm:block">
+  <mat-slide-toggle class="m-4" (click)="toggleTheme()" aria-label="Cambiar tema">
+    <mat-icon>{{ isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+  </mat-slide-toggle>
+</div>

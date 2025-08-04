@@ -1,9 +1,20 @@
 <div class="mx-4 flex justify-between items-center" color="primary">
-    <h1 class="bitcount-title">Climadata</h1>
-    <div>
-        <app-toggle-button></app-toggle-button>
-        <button matFab extended filled routerLink="/login"><mat-icon>login</mat-icon> login</button>
-        <button class="ms-3" matFab extended filled routerLink="/register"><mat-icon>add</mat-icon> signin</button>
+    <h1 class="bitcount-title text-5xl sm:text-7xl">Climadata</h1>
+    <div class="hidden lg:block">
+        <div class="flex flex-row">
+            <app-toggle-button></app-toggle-button>
+            <button matFab extended filled routerLink="/login"><mat-icon>login</mat-icon> login</button>
+            <button class="ms-3" matFab extended filled routerLink="/register"><mat-icon>add</mat-icon> signin</button>
+        </div>
+    </div>
+    <div class="sm:block lg:hidden block">
+        <button color="primary" filled matButton [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+        <mat-menu #menu="matMenu">
+            <app-toggle-button></app-toggle-button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item routerLink="/login"><mat-icon>login</mat-icon> login</button>
+            <button class="ms-3" mat-menu-item routerLink="/register"><mat-icon>add</mat-icon> signin</button>
+        </mat-menu>
     </div>
 </div>
 <app-home-content></app-home-content>

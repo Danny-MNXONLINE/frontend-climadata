@@ -1,18 +1,36 @@
-<div>
+<div class="mt-[64px]">
+    <h3 class="m-4 text-3xl">navigation</h3>
+    <mat-divider></mat-divider>
     <div class="hidden md:block">
-        <div class="grid grid-cols-2 justify-items-center gap-4">
-            <button routerLink="/dashboard"
+        <div class="grid grid-cols-2 justify-items-center gap-4 m-4">
+            <a routerLink="/dashboard"
                 class="bg-slate-700 rounded-lg h-80 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
-                    class="me-4 flex items-center">dashboard</mat-icon>Dashboard</button>
-            <button routerLink="/panel"
+                    class="me-4 flex items-center">dashboard</mat-icon>Dashboard</a>
+            <a routerLink="/panel"
                 class="hover_button_card bg-slate-700 rounded-lg h-80 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
-                    class="me-4 flex items-center">air</mat-icon>Panel AQ</button>
-            <button
+                    class="me-4 flex items-center">air</mat-icon>Panel AQ</a>
+            <div
+                class="bg-slate-600 rounded-lg h-80 w-full flex items-center justify-center text-3xl dashboard-cards-theme">
+                <mat-icon class="me-4 flex items-center">history</mat-icon>History</div>
+            <a href="localhost:3000/docs"
                 class="bg-slate-700 rounded-lg h-80 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
-                    class="me-4 flex items-center">history</mat-icon>History</button>
-            <button href="localhost:3000/docs"
-                class="bg-slate-700 rounded-lg h-80 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
-                    class="me-4 flex items-center">api</mat-icon>Documentation</button>
+                    class="me-4 flex items-center">api</mat-icon>Documentation</a>
+        </div>
+    </div>
+    <div class="block md:hidden">
+        <div class="grid grid-cols-1 justify-items-center gap-4 m-4">
+            <a routerLink="/dashboard"
+                class="bg-slate-700 rounded-lg h-30 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
+                    class="me-4 flex items-center">dashboard</mat-icon>Dashboard</a>
+            <a routerLink="/panel"
+                class="hover_button_card bg-slate-700 rounded-lg h-30 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
+                    class="me-4 flex items-center">air</mat-icon>Panel AQ</a>
+            <div
+                class="bg-slate-600 rounded-lg h-30 w-full flex items-center justify-center text-3xl dashboard-cards-theme">
+                <mat-icon class="me-4 flex items-center">history</mat-icon>History</div>
+            <a href="localhost:3000/docs"
+                class="bg-slate-700 rounded-lg h-30 w-full flex items-center justify-center text-3xl dashboard-cards-theme transform transition-transform duration-300 hover:scale-95"><mat-icon
+                    class="me-4 flex items-center">api</mat-icon>Documentation</a>
         </div>
     </div>
     <app-home-content></app-home-content>

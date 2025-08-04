@@ -1,57 +1,86 @@
 <div class="h-screen flex flex-row justify-between p-4">
-    <div>
-        <h1>Panel de Calidad del Aire</h1>
-        @if (elemts.length === 0){
-        <div>
-            <p><mat-spinner></mat-spinner></p>
-        </div>
-        }
-        @if(elemts.length > 0) {
-        <div>
-            <mat-form-field class="w-96">
-                <mat-label>Select an option</mat-label>
-                <mat-select [(ngModel)]="selectedId" (selectionChange)="onSelectId($event.value)">
-                    <mat-option>None</mat-option>
-                    @for(elem of elemts; track elem.id) {
-                    <mat-option [value]="elem.id">{{ elem.locality }} -
-                        {{elem.name}}
-                    </mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        </div>
-        }
-        @if (selectedId !== null) {
-        <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
-            <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
-            <div class="flex  flex-row">
-                @for (param of parameters; track param.id) {
-                <div>
-                    @for (sensor of param.sensors; track sensor) {
-                    <div class="py-3 pe-5">{{ sensor.name }}</div>
-                    }
-                </div>
-                <div>
-                    @for(measurements of param.measurements; track measurements.id) {
-                    <div class="py-3">{{measurements.value}}</div>
-                    }
-                </div>
-                }
-            </div>
-        </div>
-        }
+  <div>
+    <h1>Panel de Calidad del Aire</h1>
+
+    @defer {
+    <div class="flex items-center">
+      <mat-form-field class="w-96">
+        <mat-label>Selecciona una ubicación</mat-label>
+        <mat-select [(ngModel)]="selectedId" (selectionChange)="onSelectId($event.value)">
+          <mat-option [value]="null">Ninguno</mat-option>
+          @for (elem of elemts(); track elem.id) {
+          <mat-option [value]="elem.id">{{ elem.locality }} - {{ elem.name }}</mat-option>
+          }
+          <mat-label>Favorite food</mat-label>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="ml-5 w-96">
+        <mat-label>Buscar lugar</mat-label>
+        <input type="text" matInput placeholder="Buscar" [matAutocomplete]="auto" [(ngModel)]="inputValue"
+          (input)="filter()" />
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectId($event.option.value)">
+          @for (e of filteredRes; track e.id) {
+          <mat-option [value]="e.id">
+            {{ e.locality }} - {{ e.name }}
+          </mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
-    <div>
-        <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
-            <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
-            <ul class="space-y-1 text-sm">
-                <li><strong>O₃</strong>: Ozono (µg/m³)</li>
-                <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
-                <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
-                <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
-                <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
-                <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
-            </ul>
-        </div>
+    }
+
+    @loading (minimum 300ms) {
+    <div class="flex justify-center items-center h-24">
+      <mat-spinner></mat-spinner>
     </div>
+    }
+
+    @error{
+    <p>error</p>
+    }
+
+
+
+
+    <div class="p-4 rounded-lg fondo_leyenda shadow-sm mt-4">
+      @defer {
+      <div class="flex flex-row gap-8">
+        @for (param of parameters(); track param.id) {
+        <div>
+          @for (sensor of param.sensors; track sensor.id) {
+          <div class="py-3 pe-5">{{ sensor.name }}</div>
+          }
+        </div>
+        <div>
+          @for (measurement of param.measurements; track measurement.id) {
+          <div class="py-3">{{ measurement.value }}</div>
+          }
+        </div>
+        }
+      </div>
+      }
+      @loading (minimum 500ms) {
+      <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
+      }
+      @placeholder {
+
+      <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
+      }
+    </div>
+  </div>
+
+  <div>
+    <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
+      <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
+      <ul class="space-y-1 text-sm">
+        <li><strong>O₃</strong>: Ozono (µg/m³)</li>
+        <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
+        <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
+        <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
+        <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
+        <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
+      </ul>
+    </div>
+  </div>
 </div>

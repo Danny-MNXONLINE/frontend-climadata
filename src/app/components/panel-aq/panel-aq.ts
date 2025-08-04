@@ -1,59 +1,85 @@
-import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { MatFormField, MatLabel } from '@angular/material/input';
+import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AirQualityService } from '../../../services/air-quality.service';
+import { tap } from 'rxjs/operators';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-panel-aq',
-  imports: [HttpClientModule, CommonModule, MatFormField, MatLabel, MatSelect, MatOption, MatSpinner, FormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    MatSpinner,
+    FormsModule,
+    NgxSkeletonLoaderModule,
+    MatInput,
+    MatAutocompleteModule
+  ],
   templateUrl: './panel-aq.html',
-  styleUrl: './panel-aq.scss'
+  styleUrls: ['./panel-aq.scss'],
 })
 export class PanelAq {
-  constructor(private http: HttpClient, private airQualityService: AirQualityService) { }
-  elemts: any[] = [];
-  selectedId: number | null = null;
-  parameters: any[] = [];
+  elemts = signal<any[]>([]);
+  selectedId = signal<number | null>(null);
+  parameters = signal<any[]>([]);
+  loading = signal(false);
+
+  inputValue = ''
+  filteredRes: any[] = []
+
+  constructor(
+    private http: HttpClient,
+    private airQualityService: AirQualityService
+  ) { }
 
   ngOnInit() {
     this.fetchData();
-    console.log("data fetched")
   }
 
   fetchData() {
-    this.http.get('http://localhost:3000/air-quality/locations')
+    this.http.get<any[]>('http://localhost:3000/air-quality/locations').subscribe({
+      next: (res) => {
+        this.elemts.set(res)
+        console.log(this.elemts())
+      },
+      error: (err) => console.error('Error al obtener datos:', err),
+    }
+    );
+  }
+
+  onSelectId(id: number) {
+    this.selectedId.set(id);
+    this.loading.set(true);
+    this.airQualityService
+      .fetchFromApiById(id)
+      .pipe(
+        tap(() => this.loading.set(false))
+      )
       .subscribe({
         next: (res) => {
-          console.log('Datos obtenidos:', res);
-          this.elemts = res as any[];
-          console.log(this.elemts);
+          this.parameters.set(Array.isArray(res) ? res : []);
         },
         error: (err) => {
-          console.error('Error al obtener datos:', err);
-        }
+          console.error('Error:', err);
+          this.parameters.set([]);
+          this.loading.set(false);
+        },
       });
   }
-  onSelectId(id: number) {
-    console.log('🟢 ID seleccionada:', id);
-    this.selectedId = id;
 
-    this.airQualityService.fetchFromApiById(id).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        if (res) {
-          this.parameters = res;
-        } else {
-          this.parameters = [];
-        }
-        console.log(this.parameters);
-      },
-      error: (err) => {
-        console.error('Error:', err);
-      }
-    });
+  filter() {
+    const input = this.inputValue.toLowerCase();
+    this.filteredRes = this.elemts().filter (elemt => elemt.name.toLowerCase().includes(input))
+    console.log(this.filteredRes)
   }
 }

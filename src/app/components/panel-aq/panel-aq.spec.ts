@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PanelAq } from './panel-aq';
 
 describe('PanelAq', () => {

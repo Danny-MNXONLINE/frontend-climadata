@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,6 @@ import { BackButton } from '../back-button/back-button';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
