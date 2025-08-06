@@ -1,7 +1,10 @@
-<div class="h-screen flex flex-col xl:flex-row justify-between p-4">
+<div class="sm:h-screen flex flex-col xl:flex-row justify-between p-4">
   <div>
     <h1>Panel de Calidad del Aire</h1>
-
+    <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
+      <button matButton="filled" class="sm:w-96" (click)="togglePositionBbox()">mostrar sensores cerca de ti</button>
+      <button matButton="filled" class="sm:w-96 sm:ml-5 sm:mt-0 mt-5" (click)="togglePositionDefault()">mostrar todos los sensores</button>
+    </div>
     @defer {
     <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
       <mat-form-field class="sm:w-96">
@@ -29,13 +32,11 @@
       </mat-form-field>
     </div>
     }
-
     @loading (minimum 300ms) {
     <div class="flex justify-center items-center h-24">
       <mat-spinner></mat-spinner>
     </div>
     }
-
     @error{
     <p>error</p>
     }
@@ -44,13 +45,8 @@
 
 
     <div class="p-4 rounded-lg fondo_leyenda shadow-sm mt-4">
-      @if(selectedId !== null){
       <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
-      @if(parameters().length < 1){
-        <p class="h-32">selecciona una localidad para empezar</p>
-       } 
-      
-      } @defer (when selectedId !==null) { <div class="flex flex-row gap-8">
+      @defer (when selectedId() !==null) { <div class="flex flex-row gap-8">
         @for (param of parameters(); track param.id) {
         <div>
           @for (sensor of param.sensors; track sensor.id) {
@@ -63,25 +59,28 @@
           }
         </div>
         }
+      </div>
+      }
+      @loading (minimum 500ms) {
+      <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
+      }
+      @placeholder {
+      <p class="h-auto">selecciona una localidad para empezar</p>
+      }
     </div>
-    }
-    @loading (minimum 500ms) {
-    <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
-    }
   </div>
-</div>
 
-<div>
-  <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
-    <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
-    <ul class="space-y-1 text-sm">
-      <li><strong>O₃</strong>: Ozono (µg/m³)</li>
-      <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
-      <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
-      <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
-      <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
-      <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
-    </ul>
+  <div>
+    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5">
+      <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
+      <ul class="space-y-1 text-sm">
+        <li><strong>O₃</strong>: Ozono (µg/m³)</li>
+        <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
+        <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
+        <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
+        <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
+        <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
+      </ul>
+    </div>
   </div>
-</div>
 </div>
