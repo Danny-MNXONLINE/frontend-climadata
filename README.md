@@ -27,3 +27,15 @@ Incluye gráficos, animaciones y gestión dinámica de sensores y mediciones.
 ```bash
 git clone https://github.com/usuario/proyecto-frontend.git
 cd proyecto-frontend
+```
+
+### 2️⃣ Instalar dependencias
+```bash
+npm install
+npm update
+```
+
+### 3️⃣ Iniciar servidor de desarrollo
+```bash
+npm run start
+```
