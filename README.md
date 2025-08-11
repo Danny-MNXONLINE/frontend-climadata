@@ -4,7 +4,7 @@
 [![Node](https://img.shields.io/badge/Node.js-20.5.0-green?logo=node.js)](https://nodejs.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen?logo=githubactions)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](#)
+[![Version](https://img.shields.io/badge/version-0.2.2-blue)](#)
 
 ---
 
