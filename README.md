@@ -39,3 +39,31 @@ npm update
 ```bash
 npm run start
 ```
+
+### 4️⃣ Ejectuar tests
+```bash
+npm test
+```
+
+### 5️⃣ Compliar para produccion
+```bash
+npm run build
+# la aplicacion esta compilanda en la carpeta /dist
+```
+
+---
+
+## Estructura del proyecto
+```bash
+src/
+ ├── app/                  # Componentes, servicios y lógica principal
+ │    ├── components/      # Componentes de UI
+ │    ├── services/        # Servicios y lógica de negocio
+ │    ├── models/          # Interfaces y modelos de datos
+ │    └── app.module.ts
+ ├── assets/               # Imágenes, fuentes, estilos globales
+ ├── environments/         # Configuración de entornos
+ ├── index.html
+ └── main.ts
+```
+
