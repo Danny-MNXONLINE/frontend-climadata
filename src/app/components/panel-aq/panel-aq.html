@@ -1,9 +1,10 @@
-<div class="sm:h-screen flex flex-col xl:flex-row justify-between p-4">
+<div class="sm:h-screen flex flex-col xl:flex-row justify-between p-4 mx-auto">
   <div>
     <h1>Panel de Calidad del Aire</h1>
     <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
       <button matButton="filled" class="sm:w-96" (click)="togglePositionBbox()">mostrar sensores cerca de ti</button>
-      <button matButton="filled" class="sm:w-96 sm:ml-5 sm:mt-0 mt-5" (click)="togglePositionDefault()">mostrar todos los sensores</button>
+      <button matButton="filled" class="sm:w-96 sm:ml-5 sm:mt-0 mt-5" (click)="togglePositionDefault()">mostrar todos
+        los sensores</button>
     </div>
     @defer {
     <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
@@ -14,7 +15,6 @@
           @for (elem of elemts(); track elem.id) {
           <mat-option [value]="elem.id">{{ elem.locality }} - {{ elem.name }}</mat-option>
           }
-          <mat-label>Favorite food</mat-label>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="sm:ml-5 sm:w-96">
@@ -33,9 +33,10 @@
     </div>
     }
     @loading (minimum 300ms) {
-    <div class="flex justify-center items-center h-24">
+    <!-- <div class="flex justify-center items-center h-24">
       <mat-spinner></mat-spinner>
-    </div>
+    </div> -->
+    <app-loading></app-loading>
     }
     @error{
     <p>error</p>
@@ -44,7 +45,7 @@
 
 
 
-    <div class="p-4 rounded-lg fondo_leyenda shadow-sm mt-4">
+    <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
       <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
       @defer (when selectedId() !==null) { <div class="flex flex-row gap-8">
         @for (param of parameters(); track param.id) {
@@ -65,22 +66,68 @@
       <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
       }
       @placeholder {
-      <p class="h-auto">selecciona una localidad para empezar</p>
+      <p class="h-auto sm:h-32">selecciona una localidad para empezar</p>
       }
     </div>
   </div>
 
-  <div>
-    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5">
+  <div class="flex flex-col">
+    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 sm:mx-5">
       <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
       <ul class="space-y-1 text-sm">
-        <li><strong>O₃</strong>: Ozono (µg/m³)</li>
-        <li><strong>PM₁₀</strong>: Partículas ≤ 10 µm (µg/m³)</li>
-        <li><strong>PM₂.₅</strong>: Partículas ≤ 2.5 µm (µg/m³)</li>
-        <li><strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³)</li>
-        <li><strong>NO</strong>: Monóxido de Nitrógeno (µg/m³)</li>
-        <li><strong>SO₂</strong>: Dióxido de Azufre (µg/m³)</li>
+        <li>
+          <strong>O₃</strong>: Ozono troposférico (µg/m³).
+          <em>Formado por reacciones químicas entre contaminantes. Irritante respiratorio.</em>
+          • Bajo: &lt; 60 µg/m³ — Moderado: 60–120 µg/m³ — Alto: &gt; 120 µg/m³
+        </li>
+        <li>
+          <strong>PM₁₀</strong>: Partículas en suspensión ≤ 10 µm (µg/m³).
+          <em>Partículas inhalables que pueden causar problemas respiratorios.</em>
+          • Bajo: &lt; 20 µg/m³ — Moderado: 20–50 µg/m³ — Alto: &gt; 50 µg/m³
+        </li>
+        <li>
+          <strong>PM₂.₅</strong>: Partículas finas ≤ 2.5 µm (µg/m³).
+          <em>Más dañinas por su capacidad de penetrar profundamente en los pulmones.</em>
+          • Bajo: &lt; 10 µg/m³ — Moderado: 10–25 µg/m³ — Alto: &gt; 25 µg/m³
+        </li>
+        <li>
+          <strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³).
+          <em>Producido por vehículos y procesos industriales. Irrita pulmones.</em>
+          • Bajo: &lt; 40 µg/m³ — Moderado: 40–100 µg/m³ — Alto: &gt; 100 µg/m³
+        </li>
+        <li>
+          <strong>NO</strong>: Monóxido de Nitrógeno (µg/m³).
+          <em>Emisión directa de vehículos. Se oxida fácilmente a NO₂.</em>
+          • Bajo: &lt; 25 µg/m³ — Moderado: 25–75 µg/m³ — Alto: &gt; 75 µg/m³
+        </li>
+        <li>
+          <strong>SO₂</strong>: Dióxido de Azufre (µg/m³).
+          <em>Emitido por la combustión de carbón y petróleo. Puede agravar enfermedades respiratorias.</em>
+          • Bajo: &lt; 50 µg/m³ — Moderado: 50–125 µg/m³ — Alto: &gt; 125 µg/m³
+        </li>
       </ul>
+    </div>
+    <!-- bloque fijo de la calidad de aire del primer sitio de la lista que se devuelve con la posicion automatica -->
+    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 sm:mx-5">
+      <h3 class="text-2xl text-center border-b">En tu zona</h3>
+      <div class="grid grid-cols-4">
+        @defer{
+        @for(e of closestElement(); track e.name){
+        <div class="transform transition-transform duration-300 ease-in-out hover:scale-150 active:scale-100 shadow-md hover:shadow-xl rounded-lg overflow-hidden rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
+
+          <div>{{e.name}}</div>
+
+          <div>{{e.value}}</div>
+
+        </div>
+        }
+        }
+        @placeholder {
+        <div class="rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
+
+        </div>
+        }
+      </div>
     </div>
   </div>
 </div>

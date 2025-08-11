@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, OnInit, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
@@ -12,6 +12,25 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { GeolocationService } from '../../services/geoLocation/geoLocation';
 import { MatButton } from '@angular/material/button';
 import { createGlobalPositionStrategy } from '@angular/cdk/overlay';
+import { Loading } from '../../lotties/loading';
+
+//interfaces para acceder a campos de objetos porque ts es tonto
+
+interface Sensor {
+  id: number;
+  name: string;
+}
+
+interface Measurement {
+  id: number;
+  value: string;
+}
+
+interface firstPositionElemts {
+  sensor: any;
+  measurements: any;
+}
+
 
 @Component({
   selector: 'app-panel-aq',
@@ -27,21 +46,42 @@ import { createGlobalPositionStrategy } from '@angular/cdk/overlay';
     NgxSkeletonLoaderModule,
     MatInput,
     MatAutocompleteModule,
-    MatButton
+    MatButton,
+    Loading
   ],
   templateUrl: './panel-aq.html',
   styleUrls: ['./panel-aq.scss'],
 })
-export class PanelAq {
+export class PanelAq implements OnInit {
 
+  //leyenda
+
+  
   elemts = signal<any[]>([]);
   selectedId = signal<number | null>(null);
   parameters = signal<any[]>([]);
   loading = signal(false);
   isPosition = signal(false);
-
+  firstPositionElemts = signal<any[]>([]);
+  firstPosition = signal<number | null>(null);
+  closestElement = signal<any[]>([]);
+  
   inputValue = ''
   filteredRes: any[] = []
+
+  private firstPositionEffect = effect(() => {
+    const pos = this.firstPosition();
+    if (pos) {
+      this.fetchFirstPositionMeasurements(pos);
+    }
+  });
+
+  private closestPositionEffect = effect(() => {
+    const elem = this.firstPositionElemts();
+    if (elem && elem.length > 1) {
+      untracked(() => this.showClosestPosition());
+    }
+  })
 
   constructor(
     private http: HttpClient,
@@ -55,7 +95,7 @@ export class PanelAq {
     this.fetchFromPosition();
   }
 
-  togglePositionDefault(){
+  togglePositionDefault() {
     console.log('se cambia a default');
     this.isPosition.set(false);
     this.fetchData();
@@ -67,14 +107,14 @@ export class PanelAq {
       console.log('fromPosition')
     }
     this.fetchData();
-    console.log('byDefault')
+    console.log('byDefault');
   }
 
 
-  processBoundingBox(): Promise<[number, number, number, number]> {
-    return this.geo.getCurrentPosition().then(position => {
+  async processBoundingBox(): Promise<[number, number, number, number]> {
+    return await this.geo.getCurrentPosition().then(position => {
       const { latitude, longitude } = position.coords;
-      const bboxObj = this.getBoundingBox(latitude, longitude, 0.5);
+      const bboxObj = this.getBoundingBox(latitude, longitude, 0.4);
       const bbox: [number, number, number, number] = [
         bboxObj.minLon,
         bboxObj.minLat,
@@ -101,10 +141,25 @@ export class PanelAq {
         next: response => {
           console.log('Air Quality Data:', response);
           this.elemts.set(response)
+          this.firstPosition.set(response[0].id)
+          console.log(this.firstPosition())
         },
         error: (err) => console.error('Error al obtener datos:', err)
       });
     });
+  }
+
+  fetchFirstPositionMeasurements(firstPosition: any) {
+    this.airQualityService.fetchFromApiById(firstPosition).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.firstPositionElemts.set(Array.isArray(res) ? res : []);
+        console.log(this.firstPositionElemts());
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   fetchData() {
@@ -142,5 +197,38 @@ export class PanelAq {
     const input = this.inputValue.toLowerCase();
     this.filteredRes = this.elemts().filter(elemt => elemt.name.toLowerCase().includes(input))
     console.log(this.filteredRes)
+  }
+
+  showClosestPosition() {
+    // Capturamos el snapshot para evitar cambios reactivos
+    const allData = structuredClone(this.firstPositionElemts());
+
+    console.log("=== RAW allData ===", allData);
+
+    const dataSensors = allData[0] || [];
+    const dataMeasurements = allData[1] || [];
+
+    console.log("=== Sensors snapshot ===", dataSensors);
+    console.log("=== Measurements snapshot ===", dataMeasurements);
+
+    const sensors = dataSensors.sensors
+      .filter((item: any) => item.id && item.name)
+      .map((s: any) => ({ ...s, id: Number(s.id) }));
+
+    const measurements = dataMeasurements.measurements
+      .filter((item: any) => item.sensorsId)
+      .map((m: any) => ({ ...m, sensorsId: Number(m.sensorsId) }));
+
+    const paired = sensors.map((sensor: any) => {
+      const measurement = measurements.find((m: any) => m.sensorsId === sensor.id);
+      return {
+        name: sensor.name,
+        value: measurement ? measurement.value : null
+      };
+    });
+
+    console.log("=== Paired snapshot ===", paired);
+
+    this.closestElement.set(paired);
   }
 }
