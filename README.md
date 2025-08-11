@@ -67,3 +67,20 @@ src/
  └── main.ts
 ```
 
+---
+
+## Mas dependencias
+```bash
+    "ngx-skeleton-loader": "^11.2.1",
+    "postcss": "^8.5.6",
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^4.1.11",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+```
+
+##Backend
+```bash
+#enlace al repo del backend
+https://github.com/Danny-MNXONLINE/backend-climadata
+```
