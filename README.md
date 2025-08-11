@@ -53,7 +53,7 @@ npm run build
 
 ---
 
-## Estructura del proyecto
+## 🏗️ Estructura del proyecto
 ```bash
 src/
  ├── app/                  # Componentes, servicios y lógica principal
