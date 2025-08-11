@@ -11,8 +11,7 @@ import { tap } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { GeolocationService } from '../../services/geoLocation/geoLocation';
 import { MatButton } from '@angular/material/button';
-import { createGlobalPositionStrategy } from '@angular/cdk/overlay';
-import { Loading } from '../../lotties/loading';
+import { Loading } from '../../lotties/loading/loading';
 
 //interfaces para acceder a campos de objetos porque ts es tonto
 
