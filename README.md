@@ -1,7 +1,7 @@
 # 🌿 Proyecto Frontend — Panel de Calidad del Aire
 
-[![Angular](https://img.shields.io/badge/Angular-20.0.0-red?logo=angular)](https://angular.io/)
-[![Node](https://img.shields.io/badge/Node.js-20.x-green?logo=node.js)](https://nodejs.org/)
+[![Angular](https://img.shields.io/badge/Angular-20.1.2-red?logo=angular)](https://angular.io/)
+[![Node](https://img.shields.io/badge/Node.js-20.5.0-green?logo=node.js)](https://nodejs.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen?logo=githubactions)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](#)
