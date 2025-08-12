@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AuthHeader } from './auth-header';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('AuthHeader', () => {
   let component: AuthHeader;
@@ -8,7 +8,7 @@ describe('AuthHeader', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthHeader]
+      imports: [AuthHeader, provideHttpClientTesting]
     })
     .compileComponents();
 
