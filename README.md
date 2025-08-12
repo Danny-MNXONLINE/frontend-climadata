@@ -11,7 +11,13 @@
 ## Screenshots
 
 #### Vista panel principal Desktop
-![Panel-desktop](public/screenshots/panel-desktop.png)
+![panel-desktop](public/screenshots/panel-desktop.png)
+![panel-desktop-aside](public/screenshots/panel-desktop-aside.png)
+
+#### Vista panel principal movil
+![panel-movil](public/screenshots/panel-mobile.png)
+![panel-movil-aside](public/screenshots/panel-mobile-aside.png)
+
 
 ## 📋 Descripción
 Aplicación frontend desarrollada en **Angular 20** para la visualización de datos de calidad del aire en tiempo real.  
