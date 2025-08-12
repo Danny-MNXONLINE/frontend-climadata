@@ -10,17 +10,18 @@
 
 ## Screenshots
 
-| Panel principal Desktop | Panel principal Desktop (aside)
+| Panel principal Desktop | Panel principal Desktop (aside) |
 | --- | --- |
-| ![panel-desktop](public/screenshots/panel-desktop.png) | ![panel-desktop-aside](public/screenshots/panel-desktop-aside.png) |
+| <img src="public/screenshots/panel-desktop.png" width="400"> | <img src="public/screenshots/panel-desktop-aside.png" width="400"> |
 
 | Panel principal móvil | Panel principal móvil (aside) |
 | --- | --- |
-| ![panel-movil](public/screenshots/panel-mobile.png) | ![panel-movil-aside](public/screenshots/panel-mobile-aside.png) |
+| <img src="public/screenshots/panel-mobile.png" width="400"> | <img src="public/screenshots/panel-mobile-aside.png" width="400"> |
 
 | Login desktop | Login móvil |
 | --- | --- |
-| ![login-desktop](public/screenshots/login-desktop.png) | ![login-movil](public/screenshots/login-mobile.png) |
+| <img src="public/screenshots/login-desktop.png" width="400"> | <img src="public/screenshots/login-mobile.png" width="400"> |
+
 
 
 ## 📋 Descripción
