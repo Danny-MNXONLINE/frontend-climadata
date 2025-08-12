@@ -90,4 +90,4 @@ https://github.com/Danny-MNXONLINE/backend-climadata
 ---
 
 ## Future Features and additions
-# Documentation 
+· Documentation, actual documentation is on its way
