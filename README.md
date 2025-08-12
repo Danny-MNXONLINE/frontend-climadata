@@ -32,7 +32,7 @@ Incluye gráficos, animaciones y gestión dinámica de sensores y mediciones.
 
 ## 📦 Requisitos previos
 - [Node.js](https://nodejs.org/) >= 24.5.0
-- [Angular CLI](https://angular.io/cli) >= 20.1.2
+- [Angular CLI](https://angular.dev/tools/cli) >= 20.1.2
 - npm o yarn como gestor de paquetes
 
 ---
