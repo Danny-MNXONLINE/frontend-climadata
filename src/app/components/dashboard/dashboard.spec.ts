@@ -12,10 +12,9 @@ describe('Dashboard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        provideHttpClientTesting,
-        Dashboard
+        provideHttpClientTesting, 
       ],
-      declarations: [Dashboard],
+      declarations: [],
       providers: [
         {
           provide: ActivatedRoute,
