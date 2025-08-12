@@ -1,12 +1,16 @@
 # Proyecto Frontend — Panel de Calidad del Aire
 
 [![Angular](https://img.shields.io/badge/Angular-20.1.2-red?logo=angular)](https://angular.io/)
-[![Node](https://img.shields.io/badge/Node.js-20.5.0-green?logo=node.js)](https://nodejs.org/)
+[![Node](https://img.shields.io/badge/Node.js-24.5.0-green?logo=node.js)](https://nodejs.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen?logo=githubactions)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.2.2-blue)](#)
 
 ---
+
+## Screenshots
+
+
 
 ## 📋 Descripción
 Aplicación frontend desarrollada en **Angular 20** para la visualización de datos de calidad del aire en tiempo real.  
@@ -40,21 +44,21 @@ npm update
 npm run start
 ```
 
-### 4️⃣ Ejectuar tests
+### 4️⃣ Ejecutar test
 ```bash
 npm test
 ```
 
-### 5️⃣ Compliar para produccion
+### 5️⃣ Compilar para produccion
 ```bash
 npm run build
-# la aplicacion esta compilanda en la carpeta /dist
+# la aplicacion esta compilada en la carpeta /dist
 ```
 
 ---
 
 ## 🏗️ Estructura del proyecto
-```bash
+```
 src/
  ├── app/                  # Componentes, servicios y lógica principal
  │    ├── components/      # Componentes de UI
@@ -69,28 +73,23 @@ src/
 
 ---
 
-## 🔧 Mas dependencias
-```bash
-    "ngx-skeleton-loader": "^11.2.1",
-    "postcss": "^8.5.6",
-    "rxjs": "~7.8.0",
-    "tailwindcss": "^4.1.11",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+## 🔧 Más dependencias
+```json
+    "ngx-skeleton-loader": "^11.2.1",   #libreria de esqueleto de carga
+    "rxjs": "~7.8.0",                   #para realizar peticiones http
+    "tailwindcss": "^4.1.11",           #tailwind
 ```
 
 ---
 
 ## 🔗 Backend
-```bash
-#enlace al repo del backend
 https://github.com/Danny-MNXONLINE/backend-climadata
-```
+
 
 ---
 
-## Future Features and additions
+## Futuras funcionalidades y novedades
 <ul>
- <li>Documentation, actual documentation is on its way</li> 
-  <li>add more locations, now limited to Canary Islands</li>
+ <li>Documentación</li> 
+  <li>Añadir mas localidades, por ahora limitado a las Islas Canarias</li>
 </ul>
