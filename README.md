@@ -2,7 +2,7 @@
 
 [![Angular](https://img.shields.io/badge/Angular-20.1.2-red?logo=angular)](https://angular.io/)
 [![Node](https://img.shields.io/badge/Node.js-24.5.0-green?logo=node.js)](https://nodejs.org/)
-![Test Workflow](https://github.com/Danny-MNXONLINE/frontend-climadata/workflows/tests.yml.yml/badge.svg)
+![Test Workflow](https://github.com/Danny-MNXONLINE/frontend-climadata/workflows/tests.yml/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.2.2-blue)](#)
 
