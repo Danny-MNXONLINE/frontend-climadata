@@ -90,5 +90,7 @@ https://github.com/Danny-MNXONLINE/backend-climadata
 ---
 
 ## Future Features and additions
-· Documentation, actual documentation is on its way
-· add more locations, now limited to Canary Islands
+<ul>
+ <li>Documentation, actual documentation is on its way</li> 
+  <li>add more locations, now limited to Canary Islands</li>
+</ul>
