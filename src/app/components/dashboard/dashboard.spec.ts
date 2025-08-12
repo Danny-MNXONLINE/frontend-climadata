@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Dashboard } from './dashboard';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-
 
 describe('Dashboard', () => {
   let component: Dashboard;
@@ -11,9 +9,7 @@ describe('Dashboard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        provideHttpClientTesting, 
-      ],
+      imports: [],
       declarations: [],
       providers: [
         {
