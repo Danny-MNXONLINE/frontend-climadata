@@ -20,7 +20,7 @@
 
 | Login desktop | Login móvil |
 | --- | --- |
-| ![login-desktop](public/screenshots/login-desktop.png) | ![login-movil](public/screenshots/login-mobile.png)
+| ![login-desktop](public/screenshots/login-desktop.png) | ![login-movil](public/screenshots/login-mobile.png) |
 
 
 ## 📋 Descripción
@@ -102,5 +102,5 @@ https://github.com/Danny-MNXONLINE/backend-climadata
 ## Futuras funcionalidades y novedades
 <ul>
  <li>Documentación</li> 
-  <li>Añadir mas localidades, por ahora limitado a las Islas Canarias</li>
+  <li>Añadir más localidades, por ahora limitado a las Islas Canarias</li>
 </ul>
