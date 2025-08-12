@@ -1,4 +1,4 @@
-# 🌿 Proyecto Frontend — Panel de Calidad del Aire
+# Proyecto Frontend — Panel de Calidad del Aire
 
 [![Angular](https://img.shields.io/badge/Angular-20.1.2-red?logo=angular)](https://angular.io/)
 [![Node](https://img.shields.io/badge/Node.js-20.5.0-green?logo=node.js)](https://nodejs.org/)
