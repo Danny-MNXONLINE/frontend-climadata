@@ -10,6 +10,7 @@
 
 ## Screenshots
 
+#### Vista panel principal Desktop
 ![Panel-desktop](public/screenshots/panel-desktop.png)
 
 ## 📋 Descripción
