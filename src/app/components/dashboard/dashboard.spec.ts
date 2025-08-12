@@ -12,7 +12,8 @@ describe('Dashboard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        provideHttpClientTesting, // para HttpClient si usas
+        provideHttpClientTesting,
+        Dashboard
       ],
       declarations: [Dashboard],
       providers: [
