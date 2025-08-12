@@ -58,8 +58,8 @@ npm run build
 src/
  ├── app/                  # Componentes, servicios y lógica principal
  │    ├── components/      # Componentes de UI
- │    ├── services/        # Servicios y lógica de negocio
- │    ├── models/          # Interfaces y modelos de datos
+ │    ├── services/        # Servicios y lógica
+ |    ├── layouts/         # Layouts
  │    └── app.module.ts
  ├── assets/               # Imágenes, fuentes, estilos globales
  ├── environments/         # Configuración de entornos
@@ -86,3 +86,8 @@ src/
 #enlace al repo del backend
 https://github.com/Danny-MNXONLINE/backend-climadata
 ```
+
+---
+
+## Future Features and additions
+# Documentation 
