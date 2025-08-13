@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, signal, untracked } from '@angular/core';
+import { Component, computed, effect, OnInit, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
@@ -55,7 +55,7 @@ export class PanelAq implements OnInit {
 
   //leyenda
 
-  
+
   elemts = signal<any[]>([]);
   selectedId = signal<number | null>(null);
   parameters = signal<any[]>([]);
@@ -64,7 +64,8 @@ export class PanelAq implements OnInit {
   firstPositionElemts = signal<any[]>([]);
   firstPosition = signal<number | null>(null);
   closestElement = signal<any[]>([]);
-  
+  firstPositionName = signal("")
+
   inputValue = ''
   filteredRes: any[] = []
 
@@ -141,6 +142,7 @@ export class PanelAq implements OnInit {
           console.log('Air Quality Data:', response);
           this.elemts.set(response)
           this.firstPosition.set(response[0].id)
+          this.firstPositionName.set(response[0].name)
           console.log(this.firstPosition())
         },
         error: (err) => console.error('Error al obtener datos:', err)
@@ -154,6 +156,8 @@ export class PanelAq implements OnInit {
         console.log(res);
         this.firstPositionElemts.set(Array.isArray(res) ? res : []);
         console.log(this.firstPositionElemts());
+        console.log(this.firstPositionName());
+
       },
       error: (err) => {
         console.log(err);
@@ -182,7 +186,34 @@ export class PanelAq implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          this.parameters.set(Array.isArray(res) ? res : []);
+          console.log(res)
+          const processableObject: any = res
+          const dataSensors = processableObject[0] || [];
+          const dataMeasurements = processableObject[1] || [];
+
+          console.log("=== Sensors snapshot ===", dataSensors);
+          console.log("=== Measurements snapshot ===", dataMeasurements);
+
+          const sensors = dataSensors.sensors
+            .filter((item: any) => item.id && item.name)
+            .map((s: any) => ({ ...s, id: Number(s.id) }));
+
+          const measurements = dataMeasurements.measurements
+            .filter((item: any) => item.sensorsId)
+            .map((m: any) => ({ ...m, sensorsId: Number(m.sensorsId) }));
+
+          const paired = sensors.map((sensor: any) => {
+            const measurement = measurements.find((m: any) => m.sensorsId === sensor.id);
+            return {
+              name: sensor.name,
+              value: measurement ? measurement.value : null
+            };
+          });
+
+          console.log("=== Paired snapshot ===", paired);
+
+          this.parameters.set(paired);
+          console.log(this.parameters())
         },
         error: (err) => {
           console.error('Error:', err);

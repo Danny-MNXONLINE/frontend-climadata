@@ -33,9 +33,6 @@
     </div>
     }
     @loading (minimum 300ms) {
-    <!-- <div class="flex justify-center items-center h-24">
-      <mat-spinner></mat-spinner>
-    </div> -->
     <app-loading></app-loading>
     }
     @error{
@@ -46,18 +43,12 @@
 
 
     <div class="p-4 rounded-lg fondo_leyenda shadow-sm">
-      <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire</h2>
-      @defer (when selectedId() !==null) { <div class="flex flex-row gap-8">
+      @defer (when selectedId() !==null) {
+      <h2 class="text-lg font-semibold mb-2">Parámetros de Calidad del Aire en {{"[WIP]"}}</h2>
+      <div class="flex flex-col gap-8">
         @for (param of parameters(); track param.id) {
         <div>
-          @for (sensor of param.sensors; track sensor.id) {
-          <div class="py-3 pe-5">{{ sensor.name }}</div>
-          }
-        </div>
-        <div>
-          @for (measurement of param.measurements; track measurement.id) {
-          <div class="py-3">{{ measurement.value }}</div>
-          }
+          {{param.name}} - {{param.value}}
         </div>
         }
       </div>
@@ -66,13 +57,13 @@
       <ngx-skeleton-loader count="5" appearance="line" size="100px" [theme]="{height: '50px', background: 'black'}" />
       }
       @placeholder {
-      <p class="h-auto sm:h-32">selecciona una localidad para empezar</p>
+      <p class="h-auto sm:h-32 flex justify-center items-center text-gray-200">selecciona una localidad para empezar</p>
       }
     </div>
   </div>
-
+  <!-- el ejercicio -->
   <div class="flex sm:flex-col flex-col-reverse">
-    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 sm:mx-5">
+    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 xl:mx-5">
       <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
       <ul class="space-y-1 text-sm">
         <li>
@@ -107,27 +98,29 @@
         </li>
       </ul>
     </div>
-    <!-- bloque fijo de la calidad de aire del primer sitio de la lista que se devuelve con la posicion automatica -->
-    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 sm:mx-5">
-      <h3 class="text-2xl text-center border-b">En tu zona</h3>
+    <!-- bloque fijo de la calidad de aire del primer sitio de la lista que se devuelve con la pong serve --no-hmrsicion automatica -->
+    @defer (when isPosition() == true){
+    <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 xl:mx-5">
+      <h3 class="sm:text-2xl text-xl text-center border-b">En tu zona: {{firstPositionName()}}</h3>
       <div class="grid grid-cols-4">
-        @defer{
         @for(e of closestElement(); track e.name){
-        <div class="transform transition-transform duration-300 ease-in-out hover:scale-150 active:scale-100 shadow-md hover:shadow-xl rounded-lg overflow-hidden rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
-
+        <div
+          class="transform transition-transform duration-300 ease-in-out hover:scale-150 active:scale-100 shadow-md hover:shadow-xl rounded-lg overflow-hidden rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
           <div>{{e.name}}</div>
-
           <div>{{e.value}}</div>
-
-        </div>
-        }
-        }
-        @placeholder {
-        <div class="rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
-
         </div>
         }
       </div>
     </div>
+    }
+    @loading (minimum 1s){
+    <app-loading></app-loading>
+    }
+    @placeholder {
+    <div
+      class="rounded-lg shadow-sm p-2 mt-5 xl:m-5 fondo_card_measurement flex flex-col size-auto text-center text-gray-200">
+      selecciona sensores mas cercanos para empezar
+    </div>
+    }
   </div>
 </div>
