@@ -13,7 +13,6 @@ import { PanelAq } from './components/panel-aq/panel-aq';
 export const routes: Routes = [
     {
         path: '',
-        component: Footer,
         children: [
             {
                 path: '',
