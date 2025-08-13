@@ -45,7 +45,7 @@ Incluye gráficos, animaciones y gestión dinámica de sensores y mediciones.
 ### 1️⃣ Clonar repositorio
 ```bash
 git clone https://github.com/usuario/proyecto-frontend.git
-cd proyecto-frontend
+cd frontend-climadata
 ```
 
 ### 2️⃣ Instalar dependencias
