@@ -6,7 +6,9 @@ import { MatLabel } from '@angular/material/input';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BackButton } from '../back-button/back-button';
+import { Injectable } from '@angular/core';
 
+@Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-login',
   imports: [MatFabButton, MatIcon, MatInputModule, MatLabel, FormsModule, BackButton],
