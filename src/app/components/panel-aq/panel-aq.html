@@ -1,6 +1,5 @@
-<div class="sm:h-auto xl:h-screen flex flex-col xl:flex-row justify-between p-4 mx-auto">
+<div class="sm:h-auto xl:h-screen flex flex-col xl:flex-row p-4 mx-auto">
   <div>
-    <h1>Panel de Calidad del Aire</h1>
     <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
       <button matButton="filled" class="sm:w-96" (click)="togglePositionBbox()">mostrar sensores cerca de ti</button>
       <button matButton="filled" class="sm:w-96 sm:ml-5 sm:mt-0 mt-5" (click)="togglePositionDefault()">mostrar todos
@@ -48,7 +47,7 @@
       <div class="flex flex-col gap-8">
         @for (param of parameters(); track param.id) {
         <div>
-          {{param.name}} - {{param.value}}
+          {{param.name}} / {{param.units}} - {{param.value}}
         </div>
         }
       </div>
@@ -63,41 +62,28 @@
   </div>
   <!-- el ejercicio -->
   <div class="flex sm:flex-col flex-col-reverse">
+    @defer ( when selectedId() !== null){
     <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 xl:mx-5">
       <h3 class="text-lg font-semibold mb-2">Leyenda de Parámetros</h3>
       <ul class="space-y-1 text-sm">
+        @for (e of leyendaElements(); track e.name) {
         <li>
-          <strong>O₃</strong>: Ozono troposférico (µg/m³).
-          <em>Formado por reacciones químicas entre contaminantes. Irritante respiratorio.</em>
-          • Bajo: &lt; 60 µg/m³ — Moderado: 60–120 µg/m³ — Alto: &gt; 120 µg/m³
+          <strong>{{e.displayName}}: </strong>
+          <em>{{e.info}}</em>
+          • Bajo: &lt; {{e.riskLevel.low}} {{e.unit}} — Moderado: {{e.riskLevel.moderate}} {{e.unit}} — Alto: &gt; {{e.riskLevel.high}} {{e.unit}} <p class="text-red-600">{{e.riskLevel.riskDescription}}</p>
         </li>
-        <li>
-          <strong>PM₁₀</strong>: Partículas en suspensión ≤ 10 µm (µg/m³).
-          <em>Partículas inhalables que pueden causar problemas respiratorios.</em>
-          • Bajo: &lt; 20 µg/m³ — Moderado: 20–50 µg/m³ — Alto: &gt; 50 µg/m³
-        </li>
-        <li>
-          <strong>PM₂.₅</strong>: Partículas finas ≤ 2.5 µm (µg/m³).
-          <em>Más dañinas por su capacidad de penetrar profundamente en los pulmones.</em>
-          • Bajo: &lt; 10 µg/m³ — Moderado: 10–25 µg/m³ — Alto: &gt; 25 µg/m³
-        </li>
-        <li>
-          <strong>NO₂</strong>: Dióxido de Nitrógeno (µg/m³).
-          <em>Producido por vehículos y procesos industriales. Irrita pulmones.</em>
-          • Bajo: &lt; 40 µg/m³ — Moderado: 40–100 µg/m³ — Alto: &gt; 100 µg/m³
-        </li>
-        <li>
-          <strong>NO</strong>: Monóxido de Nitrógeno (µg/m³).
-          <em>Emisión directa de vehículos. Se oxida fácilmente a NO₂.</em>
-          • Bajo: &lt; 25 µg/m³ — Moderado: 25–75 µg/m³ — Alto: &gt; 75 µg/m³
-        </li>
-        <li>
-          <strong>SO₂</strong>: Dióxido de Azufre (µg/m³).
-          <em>Emitido por la combustión de carbón y petróleo. Puede agravar enfermedades respiratorias.</em>
-          • Bajo: &lt; 50 µg/m³ — Moderado: 50–125 µg/m³ — Alto: &gt; 125 µg/m³
-        </li>
+        }
       </ul>
     </div>
+    }
+    @loading (minimum 500ms) {
+      <app-loading></app-loading>
+    }
+    @placeholder {
+      <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 xl:mx-5 xl:size-50 flex  items-center justify-center xl:w-250">
+        selecciona una localidad para empezar
+      </div>
+    }
     <!-- bloque fijo de la calidad de aire del primer sitio de la lista que se devuelve con la pong serve --no-hmrsicion automatica -->
     @defer (when isPosition() == true){
     <div class="rounded-lg fondo_leyenda shadow-sm p-2 mt-5 xl:mx-5">
@@ -106,7 +92,7 @@
         @for(e of closestElement(); track e.name){
         <div
           class="transform transition-transform duration-300 ease-in-out hover:scale-150 active:scale-100 shadow-md hover:shadow-xl rounded-lg overflow-hidden rounded-lg shadow-sm p-2 m-2 fondo_card_measurement flex flex-col size-auto text-center">
-          <div>{{e.name}}</div>
+          <div>{{e.name}} - {{e.units}}</div>
           <div>{{e.value}}</div>
         </div>
         }

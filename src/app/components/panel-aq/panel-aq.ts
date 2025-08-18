@@ -65,6 +65,7 @@ export class PanelAq implements OnInit {
   firstPosition = signal<number | null>(null);
   closestElement = signal<any[]>([]);
   firstPositionName = signal("")
+  leyendaElements = signal<any[]>([]);
 
   inputValue = ''
   filteredRes: any[] = []
@@ -205,7 +206,8 @@ export class PanelAq implements OnInit {
           const paired = sensors.map((sensor: any) => {
             const measurement = measurements.find((m: any) => m.sensorsId === sensor.id);
             return {
-              name: sensor.name,
+              name: sensor.parameter.displayName || sensor.name,
+              units: sensor.parameter.units || 'unknown',
               value: measurement ? measurement.value : null
             };
           });
@@ -214,6 +216,7 @@ export class PanelAq implements OnInit {
 
           this.parameters.set(paired);
           console.log(this.parameters())
+          this.fetchElements(paired.map((item: any) => item.name));
         },
         error: (err) => {
           console.error('Error:', err);
@@ -252,7 +255,8 @@ export class PanelAq implements OnInit {
     const paired = sensors.map((sensor: any) => {
       const measurement = measurements.find((m: any) => m.sensorsId === sensor.id);
       return {
-        name: sensor.name,
+        name: sensor.parameter.displayName || sensor.name,
+        units: sensor.parameter.units || 'unknown',
         value: measurement ? measurement.value : null
       };
     });
@@ -261,4 +265,32 @@ export class PanelAq implements OnInit {
 
     this.closestElement.set(paired);
   }
+
+  // filtrando los parametros en la leyenda
+
+
+  async fetchElements(selectedParams: string[]) {
+    if (!selectedParams || selectedParams.length === 0) return [];
+
+    // Codificamos cada nombre para que los caracteres especiales no rompan la URL
+    const encodedNames = selectedParams.map(name => encodeURIComponent(name)).join(',');
+    console.log(encodedNames)
+
+    try {
+      const res = await fetch(`http://localhost:3000/chemical-elements/filter?names=${encodedNames}`);
+      if (!res.ok) {
+        console.error('Error fetching elements:', res.statusText);
+        return [];
+      }
+
+      const data = await res.json();
+      console.log('Chemical elements fetched:', data);
+      this.leyendaElements.set(data);
+      return;
+    } catch (err) {
+      console.error('Fetch error:', err);
+      return [];
+    }
+  }
+
 }
