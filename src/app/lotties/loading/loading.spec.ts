@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import player from 'lottie-web';
 import { Loading } from './loading';
-import { LottieComponent } from 'ngx-lottie';
+import { provideLottieOptions } from 'ngx-lottie';
 
 describe('Loading', () => {
   let component: Loading;
@@ -10,7 +10,11 @@ describe('Loading', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Loading],
-      providers: [LottieComponent]
+      providers: [provideLottieOptions(
+        {
+          player: () => player
+        }
+      )]
     })
     .compileComponents();
 
