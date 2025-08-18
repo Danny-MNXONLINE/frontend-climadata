@@ -8,7 +8,8 @@ describe('Landing', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Landing, ActivatedRoute]
+      imports: [Landing],
+      providers: [ActivatedRoute]
     })
     .compileComponents();
 
