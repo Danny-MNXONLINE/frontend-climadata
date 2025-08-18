@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Footer } from './layouts/footer/footer';
+import { provideHttpClient } from '@angular/common/http';
 
 
 @Component({
