@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PanelAq } from './panel-aq';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('PanelAq', () => {
   let component: PanelAq;
@@ -7,7 +9,8 @@ describe('PanelAq', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PanelAq]
+      imports: [PanelAq],
+      providers: [provideHttpClient(), provideHttpClientTesting()]
     })
     .compileComponents();
 
