@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ThemeService } from '../../services/toggle-theme';
+import { ThemeService } from '../../services/toggleTheme/toggle-theme';
 import { MatIcon } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 

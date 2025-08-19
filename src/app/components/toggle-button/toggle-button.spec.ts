@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToggleButton } from './toggle-button';
-import { ThemeService } from '../../services/toggle-theme';
+import { ThemeService } from '../../services/toggleTheme/toggle-theme';
 
 describe('ToggleButton', () => {
   let component: ToggleButton;

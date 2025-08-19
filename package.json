@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test":  "ng test --watch=false --browsers=ChromeHeadless"
+    "test": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "prettier": {
     "overrides": [
@@ -29,7 +29,9 @@
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@tailwindcss/postcss": "^4.1.11",
+    "apexcharts": "^5.3.3",
     "lottie-web": "^5.13.0",
+    "ng-apexcharts": "^2.0.0",
     "ngx-lottie": "^20.0.0",
     "ngx-skeleton-loader": "^11.2.1",
     "postcss": "^8.5.6",

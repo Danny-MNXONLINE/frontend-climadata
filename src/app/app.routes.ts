@@ -9,6 +9,7 @@ import { Footer } from './layouts/footer/footer';
 import { Aside } from './layouts/aside/aside';
 import { AuthHeader } from './layouts/auth-header/auth-header';
 import { PanelAq } from './components/panel-aq/panel-aq';
+import { HistoryComponent } from './components/history/history';
 
 export const routes: Routes = [
     {
@@ -40,6 +41,11 @@ export const routes: Routes = [
                             {
                                 path: 'panel',
                                 component: PanelAq,
+                                canActivate: [AuthGuard]
+                            },
+                            {
+                                path: 'history',
+                                component: HistoryComponent,
                                 canActivate: [AuthGuard]
                             }
                         ]
