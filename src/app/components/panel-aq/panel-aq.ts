@@ -53,9 +53,6 @@ interface firstPositionElemts {
 })
 export class PanelAq implements OnInit {
 
-  //leyenda
-
-
   elemts = signal<any[]>([]);
   selectedId = signal<number | null>(null);
   parameters = signal<any[]>([]);
@@ -211,6 +208,7 @@ export class PanelAq implements OnInit {
               value: measurement ? measurement.value : null
             };
           });
+                    
 
           console.log("=== Paired snapshot ===", paired);
 
@@ -292,5 +290,6 @@ export class PanelAq implements OnInit {
       return [];
     }
   }
+
 
 }

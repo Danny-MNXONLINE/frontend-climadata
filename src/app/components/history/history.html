@@ -22,6 +22,17 @@
       }
     </mat-autocomplete>
   </mat-form-field>
+  @if(elementsFiltered().length > 0){
+  <mat-form-field class="sm:w-96 sm:ml-5">
+    <mat-label>Selecciona un contaminante</mat-label>
+    <mat-select [(ngModel)]="selectedElement" (selectionChange)="onSelectedElement($event.value)">
+      <mat-option [value]="null">Ninguno</mat-option>
+      @for (elem of elementsFiltered(); track elem.id) {
+      <mat-option [value]="elem.id">{{ elem.displayName }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  }
 </div>
 }
 @loading (minimum 300ms) {
@@ -30,6 +41,7 @@
 @error{
 <p>error</p>
 }
+
 <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [title]="chartOptions.title!"
   [xaxis]="chartOptions.xaxis!">
 </apx-chart>
