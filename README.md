@@ -3,7 +3,7 @@
 [![Angular](https://img.shields.io/badge/Angular-20.1.2-red?logo=angular)](https://angular.io/)
 [![Node](https://img.shields.io/badge/Node.js-24.5.0-green?logo=node.js)](https://nodejs.org/)
 ![Test Workflow](https://github.com/Danny-MNXONLINE/frontend-climadata/actions/workflows/tests.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-0.2.2-blue)](#)
+[![Version](https://img.shields.io/badge/version-0.3.0-blue)](#)
 
 ---
 
