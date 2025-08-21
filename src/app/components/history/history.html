@@ -1,47 +1,49 @@
-@defer {
-<div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
-  <mat-form-field class="sm:w-96">
-    <mat-label>Selecciona una ubicación</mat-label>
-    <mat-select [(ngModel)]="selectedId" (selectionChange)="onSelectId($event.value)">
-      <mat-option [value]="null">Ninguno</mat-option>
-      @for (elem of elemts(); track elem.id) {
-      <mat-option [value]="elem.id">{{ elem.locality }} - {{ elem.name }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="sm:ml-5 sm:w-96">
-    <mat-label>Buscar lugar</mat-label>
-    <input type="text" matInput placeholder="Buscar" [matAutocomplete]="auto" [(ngModel)]="inputValue"
-      (input)="filter()" />
+<div class="sm:h-auto xl:h-screen">
+  @defer {
+  <div class="flex sm:flex-row sm:items-center flex-col mt-4 justify-stretch">
+    <mat-form-field class="sm:w-96">
+      <mat-label>Selecciona una ubicación</mat-label>
+      <mat-select [(ngModel)]="selectedId" (selectionChange)="onSelectId($event.value)">
+        <mat-option [value]="null">Ninguno</mat-option>
+        @for (elem of elemts(); track elem.id) {
+        <mat-option [value]="elem.id">{{ elem.locality }} - {{ elem.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="sm:ml-5 sm:w-96">
+      <mat-label>Buscar lugar</mat-label>
+      <input type="text" matInput placeholder="Buscar" [matAutocomplete]="auto" [(ngModel)]="inputValue"
+        (input)="filter()" />
 
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectId($event.option.value)">
-      @for (e of filteredRes; track e.id) {
-      <mat-option [value]="e.id">
-        {{ e.locality }} - {{ e.name }}
-      </mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
-  @if(elementsFiltered().length > 0){
-  <mat-form-field class="sm:w-96 sm:ml-5">
-    <mat-label>Selecciona un contaminante</mat-label>
-    <mat-select [(ngModel)]="selectedElement" (selectionChange)="onSelectedElement($event.value)">
-      <mat-option [value]="null">Ninguno</mat-option>
-      @for (elem of elementsFiltered(); track elem.id) {
-      <mat-option [value]="elem.id">{{ elem.displayName }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectId($event.option.value)">
+        @for (e of filteredRes; track e.id) {
+        <mat-option [value]="e.id">
+          {{ e.locality }} - {{ e.name }}
+        </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    @if(elementsFiltered().length > 0){
+    <mat-form-field class="sm:w-96 sm:ml-5">
+      <mat-label>Selecciona un contaminante</mat-label>
+      <mat-select [(ngModel)]="selectedElement" (selectionChange)="onSelectedElement($event.value)">
+        <mat-option [value]="null">Ninguno</mat-option>
+        @for (elem of elementsFiltered(); track elem.id) {
+        <mat-option [value]="elem.id">{{ elem.displayName }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    }
+  </div>
   }
-</div>
-}
-@loading (minimum 300ms) {
-<app-loading></app-loading>
-}
-@error{
-<p>error</p>
-}
+  @loading (minimum 300ms) {
+  <app-loading></app-loading>
+  }
+  @error{
+  <p>error</p>
+  }
 
-<apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [title]="chartOptions.title!"
-  [xaxis]="chartOptions.xaxis!">
-</apx-chart>
+  <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [title]="chartOptions.title!"
+    [xaxis]="chartOptions.xaxis!">
+  </apx-chart>
+</div>
